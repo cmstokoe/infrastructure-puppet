@@ -207,5 +207,3 @@ vhosts_asf::vhosts::vhosts:
         Substitute s!http://issues.apache.org/!https://issues.apache.org/!
       </Location>
       
-      # Setup SSL Proxy Support (needed to allow SSL proxying for bloodhound)
-      SSLProxyEngine On
