@@ -23,4 +23,11 @@ class wicket_pvm_asf (
       require => Package['docker-engine'],
   }
 
+# run the docker image as downloaded from ASF Bintray
+  exec {
+    'run-wicket-docker-examples':
+      command => "docker run -i --rm --name wicket-examples-8.x -p 8080:8080 apache-docker-wicket-docker.bintray.io/wicket-examples:${wicket_examples_version}", # lint:ignore:140chars
+      timeout => 1200,
+      require => [Package['docker-engine'] , Exec['download-wicket-docker']],
+  }
 }
