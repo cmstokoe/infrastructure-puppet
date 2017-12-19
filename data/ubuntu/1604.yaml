@@ -163,17 +163,7 @@ apt::sources:
     include:
       deb: true
       src: false
-  'nodesource-6':
-    location: 'https://deb.nodesource.com/node_6.x'
-    release: 'xenial'
-    repos: 'main'
-    key:
-      id: '9FD3B784BC1C6FC31A8A0A1C1655A0AB68576280'
-      server: 'pool.sks-keyservers.net'
-    include:
-      deb: true
-      src: false
-
+  '
 apt::force:
   'orthrus':
     release: 'main'
@@ -452,7 +442,6 @@ build_slaves::distro_packages:
   - mingw-w64-common
   - mono-devel
   - mono-complete
-  - nodejs
   - nsis
   - openjdk-8-jdk
   - openjdk-9-jdk

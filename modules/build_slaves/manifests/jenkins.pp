@@ -395,6 +395,19 @@ class build_slaves::jenkins (
   # make gradle symlinks
   build_slaves::symlink_gradle { $gradle_versions: }
 
+  exec  { 'nodejs9-gpg-key':
+    command => '/usr/bin/curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -',
+  } ->
+  apt::source { 'nodejs9':
+    location => 'https://deb.nodesource.com/node_9.x',
+    repos    => 'main',
+    release  => 'xenial',
+  } ->
+  package { 'nodejs':
+    ensure => installed
+  }
+
+
 
   cron {
     'docker-cleanup':
