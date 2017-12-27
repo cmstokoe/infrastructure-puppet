@@ -30,9 +30,8 @@ class mail_archives (
     $groupname:
       ensure => present,
       system => true,
-  }->
-
-  user {
+  }
+  -> user {
     $username:
       ensure     => present,
       home       => "/home/${username}",

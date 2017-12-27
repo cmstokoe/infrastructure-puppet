@@ -102,8 +102,8 @@ class build_slaves::jenkins (
   define build_slaves::symlink_gradle ($gradleversions = $title) {
     package {"gradle-${gradleversions}":
       ensure => latest,
-    } ->
-    file {"/home/jenkins/tools/gradle/${gradleversions}":
+    }
+    -> file {"/home/jenkins/tools/gradle/${gradleversions}":
       ensure => link,
       target => "/usr/lib/gradle/${gradleversions}",
     }
@@ -112,8 +112,8 @@ class build_slaves::jenkins (
 
   apt::ppa { 'ppa:cwchien/gradle':
     ensure => present,
-  } ->
-  package { 'gradle': # this installs the latest version which is 4 right now
+  }
+  -> package { 'gradle': # this installs the latest version which is 4 right now
     ensure => latest,
   }
 
@@ -128,9 +128,8 @@ class build_slaves::jenkins (
 
   group { 'docker':
     ensure => present,
-  }->
-
-  user { 'jenkins':
+  }
+  -> user { 'jenkins':
     ensure     => present,
     uid        => 910,
     require    => Group['jenkins'],
@@ -274,10 +273,8 @@ class build_slaves::jenkins (
       owner  => 'jenkins',
       group  => 'jenkins',
       mode   => '0755';
-  }->
-
-  # populate /home/jenkins/tools/ with asf_packages types
-  build_slaves::mkdir_tools { $tools: }
+  }
+  -> build_slaves::mkdir_tools { $tools: }
   file {'/usr/local/asfpackages/jiracli/':
     ensure  => directory,
     owner   => 'jenkins',
