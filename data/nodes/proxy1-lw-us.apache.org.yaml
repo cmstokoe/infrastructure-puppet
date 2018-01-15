@@ -154,6 +154,18 @@ vhosts_asf::vhosts::vhosts:
     error_log_file:  'donate.apache.org.error.log'
     custom_fragment: |
       Redirect permanent / https://donate.apache.org/
+  donate:
+    vhost_name: '*'
+    ensure: 'present'
+    port: 80
+    servername: 'donate.apache.org'
+    serveradmin: 'users@infra.apache.org'
+    docroot: '/var/www'
+    log_level: 'warn'
+    access_log_file: 'donate.apache.org.http_access.log'
+    error_log_file:  'donate.apache.org.error.log'
+    custom_fragment: |
+      Redirect permanent / https://donate.apache.org/
 
   donate-ssl:
     vhost_name: '*'
@@ -174,6 +186,18 @@ vhosts_asf::vhosts::vhosts:
       ProxyHTMLURLMap https://apache.giv.sh/ /
       RequestHeader unset Accept-Encoding
 
+  infrachat:
+    vhost_name: '*'
+    ensure: 'present'
+    port: 80
+    servername: 'infra.chat'
+    serveradmin: 'users@infra.apache.org'
+    docroot: '/var/www'
+    log_level: 'warn'
+    access_log_file: 'infrachat.access.log'
+    error_log_file:  'infrachat.error.log'
+    custom_fragment: |
+      Redirect permanent / https://www.hipchat.com/gh6DJhKrN
 
   repository:
     vhost_name: '*'
