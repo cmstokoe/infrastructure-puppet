@@ -154,18 +154,6 @@ vhosts_asf::vhosts::vhosts:
     error_log_file:  'donate.apache.org.error.log'
     custom_fragment: |
       Redirect permanent / https://donate.apache.org/
-  donate:
-    vhost_name: '*'
-    ensure: 'present'
-    port: 80
-    servername: 'donate.apache.org'
-    serveradmin: 'users@infra.apache.org'
-    docroot: '/var/www'
-    log_level: 'warn'
-    access_log_file: 'donate.apache.org.http_access.log'
-    error_log_file:  'donate.apache.org.error.log'
-    custom_fragment: |
-      Redirect permanent / https://donate.apache.org/
 
   donate-ssl:
     vhost_name: '*'
