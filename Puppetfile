@@ -190,9 +190,6 @@ mod 'puppet-ca_cert',
   :git => 'https://github.com/pcfens/puppet-ca_cert',
   :tag => 'v1.6.0'
   
-mod 'puppet-puppetboard'
-  :tag => '2.9.0'
-
 mod 'python',
   :git => 'https://github.com/stankevich/puppet-python.git',
   :tag => '1.18.2'
