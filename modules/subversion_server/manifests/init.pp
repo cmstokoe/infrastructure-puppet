@@ -8,6 +8,8 @@ class subversion_server (
   $s3_gpg_passphrase    = '',
   $s3_secret_key        = '',
   $svn_master_hostname  = 'svn-master.apache.org',
+  $gunicorn service     = 'gunicorn',
+  $gunicorn_service_status = 'running',
 
 ) {
 
@@ -697,14 +699,21 @@ class subversion_server (
   }
 
   # Gunicorn for viewvc
-  # Run this command unless gunicorn is already running.
   # -w 10 == 10 workers, we can up that if need be.
-  exec { '/usr/local/bin/gunicorn -w 8 -b 127.0.0.1:8080 -D viewvc-wsgi:application':
-    path   => '/usr/bin:/usr/sbin:/bin',
-    user   => 'www-data',
-    group  => 'www-data',
-    cwd    =>  '/usr/lib/viewvc/cgi-bin/',
-    unless => '/bin/ps ax | /bin/grep -q [g]unicorn',
+  file{  '/lib/systemd/system/gunicorn.service':
+      mode   => '0755',
+      owner  => 'www-data',
+      group  => 'www-data',
+      source => 'puppet:///modules/subversion_server/gunicorn.service';
   }
 
+  service { 'gunicorn':
+    ensure    => $gunicorn_status,
+    enable    => true,
+    hasstatus => true,
+    subscribe => [
+      File['/lib/systemd/system/gunicorn.service'],
+      File['/etc/viewvc/viewvc.conf'],
+    ]
+}
 }

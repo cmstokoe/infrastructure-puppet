@@ -1,0 +1,13 @@
+[Unit]
+Description=gunicorn for SVN viewvc
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/gunicorn -w 8 -b 127.0.0.1:8080 -D viewvc-wsgi:application
+ExecStop=/usr/bin/pkill -f gunicorn
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target
+Alias=gunicorn.service
