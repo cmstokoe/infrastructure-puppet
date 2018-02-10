@@ -186,11 +186,13 @@ mod 'puppetlabs_yum',
   :git => 'https://github.com/stahnma/puppet-module-puppetlabs_yum',
   :commit => 'b11d47c92e49e6b839cfd3d7a50df78b5637d3f1'
 
-
 mod 'puppet-ca_cert',
   :git => 'https://github.com/pcfens/puppet-ca_cert',
   :tag => 'v1.6.0'
   
+mod 'puppet-puppetboard'
+  :tag => '2.9.0'
+
 mod 'python',
   :git => 'https://github.com/stankevich/puppet-python.git',
   :tag => '1.18.2'
