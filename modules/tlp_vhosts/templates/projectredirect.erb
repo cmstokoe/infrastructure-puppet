@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^<%= @oldname %>.apache.org [NC,OR]
+RewriteRule ^(.*)$ https://<%= @newname %>.apache.org/$1 [L,R=301,NC]
+
